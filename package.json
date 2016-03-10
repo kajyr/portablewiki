@@ -1,0 +1,22 @@
+{
+  "name": "portablewiki",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kajyr/portablewiki.git"
+  },
+  "author": "Carlo 'kajyr' <carlo.panzi@gmail.com> (http://kajyr.github.io/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kajyr/portablewiki/issues"
+  },
+  "homepage": "https://github.com/kajyr/portablewiki#readme",
+  "dependencies": {
+    "electron-prebuilt": "^0.36.10"
+  }
+}
