@@ -3,7 +3,7 @@
 const ipcRenderer = require('electron').ipcRenderer;
 
 let redrawPage = function(html) {
-	var frag = document.createDocumentFragment(),
+	let frag = document.createDocumentFragment(),
         temp = document.createElement('div');
     temp.innerHTML = html;
     while (temp.firstChild) {
@@ -12,11 +12,20 @@ let redrawPage = function(html) {
     return frag;
 }
 
-ipcRenderer.send('file:load', 'wiki/index.md');
+let page = document.getElementById('page');
+
+ipcRenderer.send('file:load', 'index.md');
 
 ipcRenderer.on('file:loaded', function(event, data) {
-  let page = document.getElementById('page');
   let frag = redrawPage(data);
 	page.innerHTML = "";
 	page.appendChild(frag);
 });
+
+
+page.addEventListener('click', function(e) {
+	if (e.target.tagName === 'A') {
+		e.stopPropagation();
+		return false;
+	}
+})

@@ -17,6 +17,11 @@
   },
   "homepage": "https://github.com/kajyr/portablewiki#readme",
   "dependencies": {
-    "electron-prebuilt": "^0.36.10"
+    "electron-prebuilt": "^0.36.10",
+    "handlebars": "^4.0.5",
+    "markdown": "^0.5.0"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.1.3"
   }
 }

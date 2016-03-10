@@ -10,6 +10,9 @@ const ipcMain = require('electron').ipcMain;
 
 const fs = require('fs');
 
+const markdown = require('markdown').markdown;
+
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -59,13 +62,15 @@ ipcMain.on('asynchronous-message', function(event, arg) {
   event.sender.send('asynchronous-reply', 'pong: ' + arg);
 });
 
-ipcMain.on('file:load', function(event, arg) {
+ipcMain.on('file:load', function(event, fileName) {
 
-  fs.readFile(arg, 'utf8', function(err, data) {
+  let file = './wiki/' + fileName;
+
+  fs.readFile(file, 'utf8', function(err, markdown_data) {
 
     //console.log(data);
 
-    event.sender.send('file:loaded', data);
+    event.sender.send('file:loaded', markdown.toHTML( markdown_data ));
 
   });
 
