@@ -1,0 +1,21 @@
+html {
+	font-family: Helvetica, sans-serif;
+}
+
+header {
+	display: flex;
+	align-items: center;
+}
+
+header h1 {
+	font-size: 1.1rem;
+	margin: 0 10px;
+}
+
+a {
+	cursor: pointer;
+}
+
+#page a {
+	color: blue;
+}

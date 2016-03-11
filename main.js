@@ -69,8 +69,11 @@ ipcMain.on('file:load', function(event, fileName) {
   fs.readFile(file, 'utf8', function(err, markdown_data) {
 
     //console.log(data);
+    let html = markdown.toHTML( markdown_data );
 
-    event.sender.send('file:loaded', markdown.toHTML( markdown_data ));
+    html = html.replace(/href="(.*\.md)"/ig, 'data-page-href="$1"');
+
+    event.sender.send('file:loaded', html);
 
   });
 
