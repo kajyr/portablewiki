@@ -1,21 +1,45 @@
+/*
+
+https://www.google.com/design/spec/style/color.html#color-color-palette
+
+*/
+
 html {
 	font-family: Helvetica, sans-serif;
+}
+
+body {
+	margin: 0;
 }
 
 header {
 	display: flex;
 	align-items: center;
+	background: #2196F3;
+	padding: 15px;
+    box-sizing: border-box;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 }
 
 header h1 {
 	font-size: 1.1rem;
-	margin: 0 10px;
+	font-weight: normal;
+}
+
+.header-item {
+	margin: 0 5px 0 0;
 }
 
 a {
 	cursor: pointer;
 }
 
+#page {
+	box-sizing: border-box;
+    padding: 5px;
+}
+
 #page a {
-	color: blue;
+	color: #303F9F;
 }
