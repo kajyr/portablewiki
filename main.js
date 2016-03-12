@@ -6,13 +6,6 @@ const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
-const ipcMain = require('electron').ipcMain;
-
-const fs = require('fs');
-
-const markdown = require('markdown').markdown;
-
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -55,27 +48,4 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   }
-});
-
-ipcMain.on('asynchronous-message', function(event, arg) {
-  console.log(arg);  // prints "ping"
-  event.sender.send('asynchronous-reply', 'pong: ' + arg);
-});
-
-ipcMain.on('file:load', function(event, fileName) {
-
-  let file = './wiki/' + fileName;
-
-  fs.readFile(file, 'utf8', function(err, markdown_data) {
-
-    //console.log(data);
-    let html = markdown.toHTML( markdown_data );
-
-    html = html.replace(/href="(.*\.md)"/ig, 'data-page-href="$1"');
-
-    event.sender.send('file:loaded', html);
-
-  });
-
-
 });

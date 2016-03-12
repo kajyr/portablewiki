@@ -1,7 +1,8 @@
 'use strict';
 
-let React = require('react');
-
+const React = require('react');
+const Remarkable = require('remarkable');
+let md = new Remarkable();
 
 let fetchLocal = function (url) {
   return new Promise(function(resolve, reject) {
@@ -22,12 +23,15 @@ module.exports = React.createClass({
 		console.log('loading', this.props.pageName)
 		fetchLocal(this.props.pageName)
 		.then((data) => {return data.text()})
-		.then((data) => {
-			if (this.isMounted()) {
-				this.setState({
-					html: data
-				});
-			}
+		.then((markdown_data) => {
+			if (!this.isMounted()) { return; }
+			
+			let html = md.render( markdown_data );
+			html = html.replace(/href="(.*\.md)"/ig, 'data-page-href="$1"');
+
+			this.setState({
+				html: html
+			});
 		})
 		.catch(function(err) {
 			console.log(err)
@@ -38,7 +42,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div> {this.state.html} </div>
+			<div dangerouslySetInnerHTML={{ __html: this.state.html }} />
 		);
 	}
 });
