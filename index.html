@@ -3,30 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <title>Portable Wiki</title>
-    <link rel="stylesheet" href="app/style/css/style.css">
   </head>
   <body>
-  <header>
-    <a data-page-href="index.md" class="header-item">
-      <img src="app/svg/home3.svg" alt="home">  
-    </a>
-    <a class="header-item">
-      <img src="app/svg/folder-open.svg" alt="open"> 
-    </a>
-    <h1 class="header-item">Portable Wiki</h1>
-    <a class="header-item" id="go-edit">
-      <img src="app/svg/pencil.svg" alt="Edit this page">  
-    </a>
-    <a class="header-item" id="go-show">
-      <img src="app/svg/circle-left.svg" alt="Back to normal mode">  
-    </a>
-  </header>
+  <div id="header"></div>
+  
     
     <div id="page">
       
     </div>
   
     <script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
+    <script src="dist/app.js"></script>
     <script src="app/index.js"></script>
   </body>
 </html>
