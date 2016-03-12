@@ -1,0 +1,22 @@
+/*
+
+https://www.google.com/design/spec/style/color.html#color-color-palette
+
+*/
+
+html {
+	font-family: Helvetica, sans-serif;
+}
+
+body {
+	margin: 0;
+}
+
+@import "partials/header";
+@import "partials/page";
+
+
+
+a {
+	cursor: pointer;
+}
