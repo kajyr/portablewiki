@@ -1,15 +1,20 @@
 'use strict';
 
 const electron = require('electron');
+const util = require('util');
+
+const userdata = require('./main/userdata.js');
+
 // Module to control application life.
 const app = electron.app;
+
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
-const ipcMain = require('electron').ipcMain;
-const dialog = require('electron').dialog;
 
-const fs = require('fs');
+
+const ipcMain = electron.ipcMain;
+const dialog = electron.dialog;
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -17,22 +22,25 @@ const fs = require('fs');
 let mainWindow;
 
 function createWindow () {
-  // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  userdata.get('WindowDimensions', {width: 800, height: 600})
+  .then(function(windim) {
+    // Create the browser window.
+    mainWindow = new BrowserWindow(windim);
 
-  // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+    // and load the index.html of the app.
+    mainWindow.loadURL('file://' + __dirname + '/index.html');
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools();
 
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    mainWindow = null;
-  });
+    // Emitted when the window is closed.
+    mainWindow.on('closed', function() {
+      // Dereference the window object, usually you would store windows
+      // in an array if your app supports multi windows, this is the time
+      // when you should delete the corresponding element.
+      mainWindow = null;
+    });
+  })
 }
 
 // This method will be called when Electron has finished

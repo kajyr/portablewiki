@@ -1,10 +1,12 @@
 {
   "name": "portablewiki",
+  "productName": "PortableWiki",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron .",
+    "rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   "dependencies": {
     "electron-prebuilt": "^0.36.11",
     "jquery": "^2.2.1",
+    "pouchdb": "^5.3.0",
     "remarkable": "^1.6.2"
   },
   "devDependencies": {
