@@ -24,10 +24,10 @@ module.exports = React.createClass({
 			});
 		});
 
-		ipcRenderer.on('base-path-selected', function(event, folder) {
+		ipcRenderer.on('base-path-selected', (event, folder) => {
 			this.setState({
 				page: "index.md",
-				path: folder + "/"
+				path: folder[0] + "/"
 			});
 		});
 
