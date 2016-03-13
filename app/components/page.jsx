@@ -1,6 +1,7 @@
 'use strict';
 
 const React = require('react');
+const ReactDOM = require('react-dom');
 const Remarkable = require('remarkable');
 let md = new Remarkable();
 
@@ -19,9 +20,8 @@ let fetchLocal = function (url) {
 }
 
 module.exports = React.createClass({
-	componentWillMount: function() {
-		console.log('loading', this.props.pageName)
-		fetchLocal(this.props.pageName)
+	loadPage: function (page) {
+		fetchLocal(page)
 		.then((data) => {return data.text()})
 		.then((markdown_data) => {
 			if (!this.isMounted()) { return; }
@@ -37,12 +37,25 @@ module.exports = React.createClass({
 			console.log(err)
 		});
 	},
+	componentWillMount: function() {
+		this.loadPage(this.props.pageName)
+	},
+	componentDidUpdate: function() {
+
+		let page = ReactDOM.findDOMNode(this);
+		let $page = $(page);
+
+		$page.on('click', '[data-page-href]', (e) => {
+			let fileRequested = $(e.currentTarget).data('page-href');
+			this.loadPage(fileRequested);
+		});
+	},
 	getInitialState: function(){
-		return { html: "empty" }
+		return { html: "" }
 	},
 	render: function(){
 		return (
 			<div dangerouslySetInnerHTML={{ __html: this.state.html }} />
 		);
 	}
-});
+});	
