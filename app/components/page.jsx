@@ -12,6 +12,13 @@ const comm = require('../comm.js');
 
 module.exports = React.createClass({
 	componentWillMount: function() {
+		ipcRenderer.on('base-path-selected', (event, folder) => {
+			this.setState({
+				page: "index.md",
+				path: folder + "/"
+			});
+		});
+		ipcRenderer.send('base-path-get');
 	},
 	componentDidMount: function() {
 		let page = ReactDOM.findDOMNode(this);
@@ -21,13 +28,6 @@ module.exports = React.createClass({
 			let fileRequested = $(e.currentTarget).data('page-href');
 			this.setState({
 				page: fileRequested
-			});
-		});
-
-		ipcRenderer.on('base-path-selected', (event, folder) => {
-			this.setState({
-				page: "index.md",
-				path: folder[0] + "/"
 			});
 		});
 

@@ -69,9 +69,20 @@ ipcMain.on('asynchronous-message', function(event, arg) {
   event.sender.send('asynchronous-reply', 'pong: ' + arg);
 });
 
+ipcMain.on('base-path-get', function(event, arg) {
+  userdata.get('base-path', './wiki').then(function(folder) {
+    event.sender.send('base-path-selected', folder);
+  })
+});
+
 ipcMain.on('base-path-select', function(event, arg) {
   let folder = dialog.showOpenDialog({ properties: ['openDirectory' ]});
-  if (folder !== undefined) {
+  if (folder === undefined) { return; }
+
+  folder = folder[0];
+
+  userdata.set('base-path', folder).then(function() {
     event.sender.send('base-path-selected', folder);
-  }
+  });
+
 });
