@@ -15,10 +15,10 @@ header h1 {
 }
 
 .header-item {
-	margin: 0 5px 0 0;
+	margin: 0 10px 0 0;
 }
 
-[mode="show"] {
+.mode-show {
 
 	#go-show {
 		display: none;
@@ -26,7 +26,7 @@ header h1 {
 	
 }
 
-[mode="edit"] {
+.mode-editor {
 
 	#go-edit {
 		display: none;

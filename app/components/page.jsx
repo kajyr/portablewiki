@@ -4,6 +4,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 
 const MarkdownShow = require('./markdown-show.jsx');
+const MarkdownEditor = require('./markdown-editor.jsx');
 
 const ipcRenderer = require('electron').ipcRenderer;
 const comm = require('../comm.js');
@@ -19,6 +20,12 @@ module.exports = React.createClass({
 			});
 		});
 		ipcRenderer.send('base-path-get');
+
+		comm.on('backhome', () => {
+			this.setState({
+				page: "index.md"
+			});
+		})
 	},
 	componentDidMount: function() {
 		let page = ReactDOM.findDOMNode(this);
@@ -29,24 +36,20 @@ module.exports = React.createClass({
 			this.setState({
 				page: fileRequested
 			});
-		});
-
-		comm.on('backhome', () => {
-			this.setState({
-				page: "index.md"
-			});
-		})
-
+		});		
 	},
 	getInitialState: function(){
 		return {
 			page: "index.md",
-			path: "./wiki/"
+			path: "./wiki/",
 		}
 	},
 	render: function(){
 		return (
+			<div>
+			<MarkdownEditor />
 			<MarkdownShow page={this.state.page} path={this.state.path}/>
+			</div>
 		);
 	}
 });	
