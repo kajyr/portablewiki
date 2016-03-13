@@ -1,10 +1,10 @@
 'use strict';
 
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const MarkdownShow = require('./markdown-show.jsx');
-const MarkdownEditor = require('./markdown-editor.jsx');
+import MarkdownShow from './markdown-show.jsx';
+import MarkdownEditor from './markdown-editor.jsx';
 
 const ipcRenderer = require('electron').ipcRenderer;
 const comm = require('../comm.js');
