@@ -10,4 +10,4 @@ import Page from './components/page.jsx';
 
 
 ReactDOM.render(<Header />, document.getElementById('header'));
-ReactDOM.render(<Page pageName="wiki/index.md" />, document.getElementById('page'));
+ReactDOM.render(<Page  />, document.getElementById('page'));

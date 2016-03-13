@@ -1,15 +1,25 @@
 'use strict';
+const React = require('react');
 
-let React = require('react');
+const dialog = require('electron').remote.dialog; 
+const ipcRenderer = require('electron').ipcRenderer;
+const comm = require('../comm.js');
+
 
 module.exports = React.createClass({
+	openFolderSelection: function() {
+		ipcRenderer.send('base-path-select');
+	},
+	backHome: function() {
+		comm.emit('backhome');
+	},
 	render: function(){
 		return (
 			<header>
-		    <a data-page-href="index.md" className="header-item">
+		    <a className="header-item" onClick={this.backHome}>
 		      <img src="app/svg/home3.svg" alt="home" />  
 		    </a>
-		    <a className="header-item">
+		    <a className="header-item" onClick={this.openFolderSelection}>
 		      <img src="app/svg/folder-open.svg" alt="open" /> 
 		    </a>
 		    <h1 className="header-item">Portable Wiki</h1>

@@ -2,60 +2,51 @@
 
 const React = require('react');
 const ReactDOM = require('react-dom');
-const Remarkable = require('remarkable');
-let md = new Remarkable();
 
-let fetchLocal = function (url) {
-  return new Promise(function(resolve, reject) {
-    var xhr = new XMLHttpRequest
-    xhr.onload = function() {
-      resolve(new Response(xhr.responseText, {status: xhr.status}))
-    }
-    xhr.onerror = function() {
-      reject(new TypeError('Local request failed'))
-    }
-    xhr.open('GET', url)
-    xhr.send(null)
-  })
-}
+const MarkdownShow = require('./markdown-show.jsx');
+
+const ipcRenderer = require('electron').ipcRenderer;
+const comm = require('../comm.js');
+
+
 
 module.exports = React.createClass({
-	loadPage: function (page) {
-		fetchLocal(page)
-		.then((data) => {return data.text()})
-		.then((markdown_data) => {
-			if (!this.isMounted()) { return; }
-			
-			let html = md.render( markdown_data );
-			html = html.replace(/href="(.*\.md)"/ig, 'data-page-href="$1"');
-
-			this.setState({
-				html: html
-			});
-		})
-		.catch(function(err) {
-			console.log(err)
-		});
-	},
 	componentWillMount: function() {
-		this.loadPage(this.props.pageName)
 	},
-	componentDidUpdate: function() {
-
+	componentDidMount: function() {
 		let page = ReactDOM.findDOMNode(this);
 		let $page = $(page);
 
 		$page.on('click', '[data-page-href]', (e) => {
 			let fileRequested = $(e.currentTarget).data('page-href');
-			this.loadPage(fileRequested);
+			this.setState({
+				page: fileRequested
+			});
 		});
+
+		ipcRenderer.on('base-path-selected', function(event, folder) {
+			this.setState({
+				page: "index.md",
+				path: folder + "/"
+			});
+		});
+
+		comm.on('backhome', () => {
+			this.setState({
+				page: "index.md"
+			});
+		})
+
 	},
 	getInitialState: function(){
-		return { html: "" }
+		return {
+			page: "index.md",
+			path: "./wiki/"
+		}
 	},
 	render: function(){
 		return (
-			<div dangerouslySetInnerHTML={{ __html: this.state.html }} />
+			<MarkdownShow page={this.state.page} path={this.state.path}/>
 		);
 	}
 });	

@@ -8,4 +8,4 @@ please select a [save folder].
 
 ## Done
 + load default page
-+ [link to another page](wiki/secondPage.md)
++ [link to another page](secondPage.md)

@@ -6,6 +6,12 @@ const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
+const ipcMain = require('electron').ipcMain;
+const dialog = require('electron').dialog;
+
+const fs = require('fs');
+
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -47,5 +53,17 @@ app.on('activate', function () {
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
     createWindow();
+  }
+});
+
+ipcMain.on('asynchronous-message', function(event, arg) {
+  console.log(arg);  // prints "ping"
+  event.sender.send('asynchronous-reply', 'pong: ' + arg);
+});
+
+ipcMain.on('base-path-select', function(event, arg) {
+  let folder = dialog.showOpenDialog({ properties: ['openDirectory' ]});
+  if (folder !== undefined) {
+    event.sender.send('base-path-selected', folder);
   }
 });
