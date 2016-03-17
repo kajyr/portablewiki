@@ -3,8 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import MarkdownShow from './markdown-show.jsx';
-import MarkdownEditor from './markdown-editor.jsx';
+import PageLoader from './page-loader.jsx';
 
 const ipcRenderer = require('electron').ipcRenderer;
 const comm = require('../comm.js');
@@ -25,7 +24,7 @@ module.exports = React.createClass({
 			this.setState({
 				page: "index.md"
 			});
-		})
+		});
 	},
 	componentDidMount: function() {
 		let page = ReactDOM.findDOMNode(this);
@@ -46,10 +45,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div>
-			<MarkdownEditor />
-			<MarkdownShow page={this.state.page} path={this.state.path}/>
-			</div>
+			<PageLoader page={this.state.path + this.state.page} />
 		);
 	}
 });	

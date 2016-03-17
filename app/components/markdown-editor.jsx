@@ -1,25 +1,40 @@
 'use strict';
 
-const React = require('react');
+import React from 'react';
+import {ipcRenderer} from 'electron';
+import comm from '../comm.js';
 
 module.exports = React.createClass({
-	loadPage: function (page) {
+	propTypes: {
+		page: React.PropTypes.string,
+		markdown: React.PropTypes.string
+	},
+	save: function() {
+		ipcRenderer.send('page-save', {
+			page: this.props.page,
+			contents: this.state.data
+		});
 
+		ipcRenderer.on('page-saved', function() {
+			comm.emit('showMode');
+		});
 	},
-	componentWillReceiveProps: function(props) {
-		this.loadPage(props.path + props.page)
-	},
-	componentWillMount: function() {
-		this.loadPage(this.props.path + this.props.page)
+	handleChange: function(event) {
+		this.setState({data: event.target.value});
 	},
 	getInitialState: function(){
-		return { html: "" }
+		return {
+			data: this.props.markdown
+		}
 	},
 	render: function(){
 		return (
-			<div>
-				<textarea></textarea>
-			</div>
+			<div id="editor">
+				<textarea defaultValue={this.props.markdown} onChange={this.handleChange} />
+				<div id="actions">
+					<button onClick={this.save}>Save</button>
+				</div>
+			</div>		
 		);
 	}
 });	

@@ -4,50 +4,35 @@ const React = require('react');
 const Remarkable = require('remarkable');
 let md = new Remarkable();
 
-let fetchLocal = function (url) {
-  return new Promise(function(resolve, reject) {
-    var xhr = new XMLHttpRequest
-    xhr.onload = function() {
-      resolve(new Response(xhr.responseText, {status: xhr.status}))
-    }
-    xhr.onerror = function() {
-      reject(new TypeError('Local request failed'))
-    }
-    xhr.open('GET', url)
-    xhr.send(null)
-  })
-}
 
 module.exports = React.createClass({
-	loadPage: function (page) {
-		fetchLocal(page)
-		.then((data) => {return data.text()})
-		.then((markdown_data) => {
-			if (!this.isMounted()) { return; }
+	propTypes: {
+		markdown: React.PropTypes.string
+	},
+	parseMD: function (markdown_data) {
+	
+		if (!this.isMounted()) { return; }
 			
-			let html = md.render( markdown_data );
-			html = html.replace(/href="(.*\.md)"/ig, 'data-page-href="$1"');
+		let html = md.render( markdown_data );
+		html = html.replace(/href="(.*\.md)"/ig, 'data-page-href="$1"');
 
-			this.setState({
-				html: html
-			});
-		})
-		.catch(function(err) {
-			console.log(err)
+		this.setState({
+			html: html
 		});
+	
 	},
 	componentWillReceiveProps: function(props) {
-		this.loadPage(props.path + props.page)
+		this.parseMD(props.markdown)
 	},
 	componentWillMount: function() {
-		this.loadPage(this.props.path + this.props.page)
+		this.parseMD(this.props.markdown)
 	},
 	getInitialState: function(){
 		return { html: "" }
 	},
 	render: function(){
 		return (
-			<div dangerouslySetInnerHTML={{ __html: this.state.html }} />
+			<div id="page" dangerouslySetInnerHTML={{ __html: this.state.html }} />
 		);
 	}
 });	

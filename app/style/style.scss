@@ -12,8 +12,14 @@ body {
 	margin: 0;
 }
 
+textarea {
+	width: 100%;
+    box-sizing: border-box;
+}
+
 @import "partials/header";
 @import "partials/page";
+@import "partials/editor";
 
 
 a {

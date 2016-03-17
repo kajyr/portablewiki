@@ -6,7 +6,8 @@ import ReactDOM from 'react-dom';
 require("./style/style.scss")
 
 import Header from './components/header.jsx';
-import Page from './components/page.jsx';
+import PageSelector from './components/page-selector.jsx';
+
 import comm from './comm.js';
 
 let App = React.createClass({
@@ -32,7 +33,7 @@ let App = React.createClass({
 		return (
 			<div className={this.state.mode}>
 				<Header />
-				<Page  />
+				<PageSelector status={this.state.mode} />
 			</div>
 			);
 	}

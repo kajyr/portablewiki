@@ -4,6 +4,7 @@ const electron = require('electron');
 const util = require('util');
 
 const userdata = require('./main/userdata.js');
+const page = require('./main/pageFS.js');
 
 // Module to control application life.
 const app = electron.app;
@@ -85,4 +86,10 @@ ipcMain.on('base-path-select', function(event, arg) {
     event.sender.send('base-path-selected', folder);
   });
 
+});
+
+ipcMain.on('page-save', function(event, data) {
+  page.save(data.page, data.contents).then(function(savedPath) {
+    event.sender.send('page-saved', savedPath);
+  });
 });
