@@ -11,20 +11,33 @@ const comm = require('../comm.js');
 
 
 module.exports = React.createClass({
-	componentWillMount: function() {
-		ipcRenderer.on('base-path-selected', (event, folder) => {
-			this.setState({
-				page: "index.md",
-				path: folder + "/"
-			});
+	_history: [],
+	_indexFile: 'index.md',
+	setBaseFolder: function(folder) {
+		this._history = [];
+		this.setState({
+			page: this._indexFile,
+			path: folder + "/"
 		});
+	},
+	selectPage: function(page, skipHistory) {
+		if (skipHistory !== true) {
+			this._history.push(this.state.page);
+		}
+		this.setState({ page });
+	},
+	back: function() {
+		if (this._history.length > 0) {
+			let page = this._history.pop();
+			this.selectPage(page, true);
+		}
+	},
+	componentWillMount: function() {
+		ipcRenderer.on('base-path-selected', (event, folder) => { this.setBaseFolder(folder); });
 		ipcRenderer.send('base-path-get');
 
-		comm.on('backhome', () => {
-			this.setState({
-				page: "index.md"
-			});
-		});
+		comm.on('backhome', () => { this.selectPage(this._indexFile); });
+		comm.on('backHistory', this.back);
 	},
 	componentDidMount: function() {
 		let page = ReactDOM.findDOMNode(this);
@@ -32,14 +45,12 @@ module.exports = React.createClass({
 
 		$page.on('click', '[data-page-href]', (e) => {
 			let fileRequested = $(e.currentTarget).data('page-href');
-			this.setState({
-				page: fileRequested
-			});
+			this.selectPage(fileRequested);
 		});		
 	},
 	getInitialState: function() {
 		return {
-			page: "index.md",
+			page: this._indexFile,
 			path: "./wiki/",
 		}
 	},

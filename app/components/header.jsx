@@ -1,4 +1,5 @@
 'use strict';
+// https://design.google.com/icons/
 const React = require('react');
 
 const dialog = require('electron').remote.dialog; 
@@ -11,21 +12,25 @@ module.exports = React.createClass({
 	backHome: function() { comm.emit('backhome'); },
 	editorMode: function() { comm.emit('editorMode'); },
 	showMode: function() { comm.emit('showMode'); },
+	back: function() { comm.emit('backHistory'); },
 	render: function(){
 		return (
 			<header>
+			<a className="header-item" onClick={this.back}>
+				<i className="material-icons">arrow_back</i>
+			</a>
 		    <a className="header-item" onClick={this.backHome}>
-		      <img src="app/svg/home3.svg" alt="home" />  
+		    	<i className="material-icons">home</i> 
 		    </a>
 		    <a className="header-item" onClick={this.openFolderSelection}>
-		      <img src="app/svg/folder-open.svg" alt="open" /> 
+		    	<i className="material-icons">folder_open</i>
 		    </a>
 		    <h1 className="header-item">Portable Wiki</h1>
 		    <a className="header-item" id="go-edit" onClick={this.editorMode}>
-		      <img src="app/svg/pencil.svg" alt="Edit this page" />  
+		      	<i className="material-icons">mode_edit</i>
 		    </a>
 		    <a className="header-item" id="go-show" onClick={this.showMode}>
-		      <img src="app/svg/circle-left.svg" alt="Back to normal mode" />  
+		    	<i className="material-icons">close</i> 
 		    </a>
 		  </header>
 			);
