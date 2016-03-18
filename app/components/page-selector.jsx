@@ -37,7 +37,7 @@ module.exports = React.createClass({
 			});
 		});		
 	},
-	getInitialState: function(){
+	getInitialState: function() {
 		return {
 			page: "index.md",
 			path: "./wiki/",

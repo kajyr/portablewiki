@@ -9,6 +9,9 @@ module.exports = React.createClass({
 		page: React.PropTypes.string,
 		markdown: React.PropTypes.string
 	},
+	back: function() {
+		comm.emit('showMode');
+	},
 	save: function() {
 		ipcRenderer.send('page-save', {
 			page: this.props.page,
@@ -33,6 +36,7 @@ module.exports = React.createClass({
 				<textarea defaultValue={this.props.markdown} onChange={this.handleChange} />
 				<div id="actions">
 					<button onClick={this.save}>Save</button>
+					<button onClick={this.back}>Cancel</button>
 				</div>
 			</div>		
 		);
