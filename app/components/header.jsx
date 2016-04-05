@@ -5,6 +5,7 @@ const React = require('react');
 const dialog = require('electron').remote.dialog; 
 const ipcRenderer = require('electron').ipcRenderer;
 const comm = require('../comm.js');
+const BackArrow = require('./header-back.jsx');
 
 
 module.exports = React.createClass({
@@ -16,9 +17,7 @@ module.exports = React.createClass({
 	render: function(){
 		return (
 			<header>
-			<a className="header-item" onClick={this.back}>
-				<i className="material-icons">arrow_back</i>
-			</a>
+			<BackArrow />
 		    <a className="header-item" onClick={this.backHome}>
 		    	<i className="material-icons">home</i> 
 		    </a>
