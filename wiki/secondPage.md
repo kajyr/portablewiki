@@ -1,3 +1,0 @@
-## second page
-
- cool stuff
