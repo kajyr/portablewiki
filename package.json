@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron .",
     "rebuild": "./node_modules/.bin/electron-rebuild",
-    "package": "electron-packager ./ PortableWiki --platform=darwin --arch=all --out dist/Desktop/PortableWiki --overwrite"
+    "package": "electron-packager ./ PortableWiki --platform=darwin --arch=x64 --ignore=node_modules --out=build/PortableWiki --overwrite --prune"
   },
   "repository": {
     "type": "git",
