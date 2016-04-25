@@ -6,7 +6,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "rebuild": "./node_modules/.bin/electron-rebuild"
+    "rebuild": "./node_modules/.bin/electron-rebuild",
+    "package": "electron-packager ./ PortableWiki --platform=darwin --arch=all --out dist/Desktop/PortableWiki --overwrite"
   },
   "repository": {
     "type": "git",
