@@ -3,7 +3,7 @@
   "productName": "PortableWiki",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/main.js",
+  "main": "./dist/app.js",
   "scripts": {
     "start": "electron .",
     "rebuild": "./node_modules/.bin/electron-rebuild",
