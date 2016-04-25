@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 
-var ignores = (function () {
+var ignoreNativeRequire = (function () {
 		var IGNORES = [
 		'electron',
 		'remote',
@@ -12,7 +12,7 @@ var ignores = (function () {
 			}
 			return callback();
 		};
-	})()
+	})();
 
 module.exports = [{
 	entry: "./src/ui/main.jsx",
@@ -29,10 +29,8 @@ module.exports = [{
 		{ test: /\.scss$/, loaders: ["style", "css", "sass"] }
 		]
 	},
-	plugins: [
-	
-	],
-	externals: [ ignores ]
+	plugins: [],
+	externals: [ ignoreNativeRequire ]
 },
 {
 	entry: "./src/app/main.js",
@@ -43,7 +41,7 @@ module.exports = [{
 	node: {
 		__dirname: false
 	},
-	externals: [ ignores ]
+	externals: [ ignoreNativeRequire ]
 }]
 
 /*

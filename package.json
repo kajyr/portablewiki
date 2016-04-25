@@ -3,11 +3,11 @@
   "productName": "PortableWiki",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/app.js",
+  "main": "./dist/main.js",
   "scripts": {
     "start": "electron .",
     "rebuild": "./node_modules/.bin/electron-rebuild",
-    "package": "electron-packager ./ PortableWiki --platform=darwin --arch=x64 --ignore=node_modules --out=build/PortableWiki --overwrite --prune",
+    "package": "electron-packager ./ PortableWiki --platform=darwin --arch=x64 --ignore=node_modules --out=build/PortableWiki --overwrite --prune"
   },
   "repository": {
     "type": "git",
