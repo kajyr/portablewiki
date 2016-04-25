@@ -1,11 +1,11 @@
 var webpack = require('webpack');
 
 module.exports = {
-	entry: "./app/main.jsx",
+	entry: "./src/ui/main.jsx",
 	output: {
 		path: './dist',
-		filename: "app.js",
-		sourceMapFilename: "app.js.map"
+		filename: "ui-bundle.js",
+		sourceMapFilename: "ui-bundle.js.map"
 	},
 	devtool: "source-map",
 	module: {
