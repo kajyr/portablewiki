@@ -3,8 +3,8 @@
 const electron = require('electron');
 const util = require('util');
 
-const userdata = require('./main/userdata.js');
 const page = require('./main/pageFS.js');
+const storage = require('basic-json-storage');
 
 // Module to control application life.
 const app = electron.app;
@@ -17,6 +17,8 @@ const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
 const dialog = electron.dialog;
 
+const dbPath = app.getPath('userData') + '/preferences.db';
+const userdata = storage(dbPath);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -29,8 +31,6 @@ function createWindow () {
     mainWindow = new BrowserWindow(windim);
 
     // and load the index.html of the app.
-
-    console.log(__dirname)
 
     mainWindow.loadURL('file://' + __dirname + '/../index.html');
 
@@ -75,6 +75,7 @@ ipcMain.on('asynchronous-message', function(event, arg) {
 
 ipcMain.on('base-path-get', function(event, arg) {
   userdata.get('base-path', './wiki').then(function(folder) {
+    console.log('get', folder);
     event.sender.send('base-path-selected', folder);
   })
 });

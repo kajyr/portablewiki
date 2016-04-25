@@ -38,6 +38,10 @@ module.exports = [{
 		path: './dist',
 		filename: "app.js"
 	},
+	module: {
+		loaders: []
+	},
+	target: 'node',
 	node: {
 		__dirname: false
 	},
