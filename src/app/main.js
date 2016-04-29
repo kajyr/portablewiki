@@ -3,7 +3,7 @@
 const electron = require('electron');
 const util = require('util');
 
-const page = require('./main/pageFS.js');
+const page = require('./modules/p-fs.js');
 const storage = require('basic-json-storage');
 
 // Module to control application life.
