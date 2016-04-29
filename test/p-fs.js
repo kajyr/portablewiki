@@ -5,14 +5,21 @@ let fs = require('fs')
 
 
 exports.save = function(test) {
+	let file = './test/expected/first.md'
+	pfs.save(file, '# first')
+	.then((saved_file) => {
+		test.equals(saved_file, file);
 
-	pfs.save('expected/first.md', '# first')
-	.then((file) => {
-		test.equals(3, 3);
-		test.done();
+		fs.open(saved_file, 'r', function(error, fd) {
 
+		    test.equals(error, null, 'File exists');
+		    test.done();
 
+		});
+
+		
 	})
+	.catch(console.log)
 	
 			
 };
