@@ -1,4 +1,7 @@
 # portablewiki
+
+[![Build Status](https://travis-ci.org/kajyr/portablewiki.svg?branch=master)](https://travis-ci.org/kajyr/portablewiki)
+
 A portable, filesystem based wiki system.
 
 The idea is to have a lightweight wiki system that lives on the local filesystem,

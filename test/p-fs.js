@@ -1,10 +1,10 @@
 'use strict'
 
-let pfs = require('../src/app/modules/p-fs.js')
-let fs = require('fs')
+const pfs = require('../src/app/modules/p-fs.js')
+const fs = require('fs')
 
 
-exports.save = function(test) {
+exports.testSave = function(test) {
 	let file = './test/expected/first.md'
 	pfs.save(file, '# first')
 	.then((saved_file) => {
