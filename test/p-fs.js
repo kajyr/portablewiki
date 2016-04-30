@@ -52,6 +52,4 @@ exports.testSelectBasePath = function(test) {
 		})
 
 	}).catch(console.log)
-	
-
 }

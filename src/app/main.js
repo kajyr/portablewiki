@@ -3,7 +3,7 @@
 const electron = require('electron');
 const util = require('util');
 
-const page = require('./modules/p-fs.js');
+const pfs = require('./modules/p-fs.js');
 const storage = require('basic-json-storage');
 
 // Module to control application life.
@@ -86,14 +86,18 @@ ipcMain.on('base-path-select', function(event, arg) {
 
   folder = folder[0];
 
-  userdata.set('base-path', folder).then(function() {
-    event.sender.send('base-path-selected', folder);
-  });
+  pfs.selectBasePath(folder)
+  .then((newBase) => {
+    return userdata.set('base-path', newBase)
+  })
+  .then((basePath) => {
+    event.sender.send('base-path-selected', basePath);
+  })
 
 });
 
 ipcMain.on('page-save', function(event, data) {
-  page.save(data.page, data.contents).then(function(savedPath) {
+  pfs.save(data.page, data.contents).then(function(savedPath) {
     event.sender.send('page-saved', savedPath);
   });
 });
