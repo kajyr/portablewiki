@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './reducers'
-
+import { startListeningToElectron } from './actions/electron'
 
 
 import App from './components/App';
@@ -16,12 +16,10 @@ import comm from './lib/comm';
 import './style/style.scss'
 
 
-const middleware = compose(
-	applyMiddleware(thunk)
-)
+const middleware = applyMiddleware(thunk)
 
 let store = createStore(rootReducer, middleware)
-
+store.dispatch( startListeningToElectron() )
 
 render(<Provider store={store}>
 	<App />

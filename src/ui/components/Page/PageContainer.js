@@ -1,18 +1,18 @@
 import { connect } from 'react-redux'
-import { editorMode, selectFolder } from '../../actions/ui'
+import { editorMode } from '../../actions/ui'
 
-import Header from './Header'
+import PageSelector from './page-selector'
 
 const mapStateToProps = (state, ownProps) => {
-
+	console.log('Page', state)
 	return {
-		
+		file: state.page.folder + state.page.file
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		openFolderSelection: () => dispatch(selectFolder()),
+		openFolderSelection: () => {},
 		backHome: () => {},
 		editorMode: () => dispatch(editorMode()),
 		showMode: () => {}
@@ -22,4 +22,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Header)
+)(PageSelector)
