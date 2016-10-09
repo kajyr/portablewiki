@@ -9,7 +9,7 @@ import rootReducer from './reducers'
 import { startListeningToElectron } from './actions/electron'
 
 
-import App from './components/App';
+import App from './components/AppContainer';
 
 import comm from './lib/comm';
 

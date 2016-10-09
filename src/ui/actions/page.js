@@ -3,6 +3,7 @@ import {
 } from '../constants'
 
 import Remarkable from 'remarkable'
+import { ipcRenderer } from 'electron'
 
 const md = new Remarkable()
 
@@ -43,5 +44,15 @@ export const loadCurrentPage = () => (dispatch, getState) => {
 			.replace(/href="(.*\.md)"/ig, 'data-page-href="$1"');
 		dispatch(loadedPage(state.page.file, state.page.folder, source, html))
 	})
+}
 
+export const savePage = () => (dispatch, getState) => {
+	const state = getState()
+	const page = state.page.folder + state.page.file
+	const source = state.page.source
+
+	ipcRenderer.send('page-save', {
+		page: page,
+		contents: source
+	});
 }

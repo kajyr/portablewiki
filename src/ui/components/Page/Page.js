@@ -3,8 +3,6 @@
 import React, { PropTypes } from 'react'
 import { findDOMNode } from 'react-dom'
 
-import PageLoader from '../page-loader.jsx';
-
 module.exports = React.createClass({
 	propTypes: {
 		loadPage: PropTypes.func.isRequired,
