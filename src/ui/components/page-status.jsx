@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import MarkdownShow from './markdown-show.jsx';
 import MarkdownEditor from './markdown-editor.jsx';
 
-const comm = require('../comm.js');
+import comm from '../lib/comm.js';
 
 
 

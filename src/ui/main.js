@@ -1,14 +1,24 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+import { createStore, applyMiddleware, compose } from 'redux'
+import rootReducer from './reducers'
 
-require("./style/style.scss")
 
 import Header from './components/header.jsx';
 import PageSelector from './components/page-selector.jsx';
 
-import comm from './comm.js';
+import comm from './lib/comm';
+
+import './style/style.scss'
+
+
+let middleware = compose(
+	applyMiddleware(thunk)
+)
 
 let App = React.createClass({
 	componentWillMount: function() {
@@ -40,4 +50,4 @@ let App = React.createClass({
 });
 
 
-ReactDOM.render(<App />, document.getElementById('app'));
+render(<App />, document.getElementById('app'));

@@ -1,7 +1,9 @@
-var webpack = require('webpack');
+'use strict'
 
-var ignoreNativeRequire = (function () {
-		var IGNORES = [
+const webpack = require('webpack');
+
+const ignoreNativeRequire = (function () {
+		const IGNORES = [
 		'electron',
 		'remote',
 		'fs'
@@ -14,8 +16,10 @@ var ignoreNativeRequire = (function () {
 		};
 	})();
 
+process.env.NODE_ENV = 'production'
+
 module.exports = [{
-	entry: "./src/ui/main.jsx",
+	entry: "./src/ui/main.js",
 	output: {
 		path: './dist',
 		filename: "ui.js",
@@ -24,12 +28,14 @@ module.exports = [{
 	devtool: "source-map",
 	module: {
 		loaders: [
-		{ test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/,   query: { presets: ['react', 'es2015'] } },
-		{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+		{ test: /\.jsx$/, loader: 'babel', exclude: /node_modules/},
+		{ test: /\.js$/, loader: 'babel', exclude: /node_modules/},
 		{ test: /\.scss$/, loaders: ["style", "css", "sass"] }
 		]
 	},
-	plugins: [],
+	plugins: [
+		new webpack.optimize.OccurrenceOrderPlugin()
+	],
 	externals: [ ignoreNativeRequire ]
 },
 {
@@ -39,7 +45,9 @@ module.exports = [{
 		filename: "app.js"
 	},
 	module: {
-		loaders: []
+		loaders: [
+			{ test: /\.js$/, loader: 'babel', exclude: /node_modules/},
+		]
 	},
 	target: 'node',
 	node: {
@@ -47,10 +55,3 @@ module.exports = [{
 	},
 	externals: [ ignoreNativeRequire ]
 }]
-
-/*
-	new webpack.optimize.UglifyJsPlugin({
-			minimize: false,
-			sourceMap: true
-		})
-*/

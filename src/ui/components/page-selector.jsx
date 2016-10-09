@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import PageLoader from './page-loader.jsx';
 
 const ipcRenderer = require('electron').ipcRenderer;
-const comm = require('../comm.js');
+import comm from '../lib/comm.js';
 
 
 
