@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {ipcRenderer} from 'electron';
-import comm from '../lib/comm.js';
+import comm from '../../lib/comm.js';
 
 module.exports = React.createClass({
 	propTypes: {

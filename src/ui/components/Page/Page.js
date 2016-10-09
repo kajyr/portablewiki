@@ -1,12 +1,15 @@
 'use strict';
 
-import React from 'react';
-import { findDOMNode } from 'react-dom';
+import React, { PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
 
 import PageLoader from '../page-loader.jsx';
 
 module.exports = React.createClass({
-
+	propTypes: {
+		loadPage: PropTypes.func.isRequired,
+		html: PropTypes.string.isRequired
+	},
 	componentDidMount: function() {
 		let page = findDOMNode(this);
 		let $page = $(page);
@@ -14,12 +17,12 @@ module.exports = React.createClass({
 		$page.on('click', '[data-page-href]', (e) => {
 			let fileRequested = $(e.currentTarget).data('page-href');
 			console.log('LINK TO', fileRequested)
-			this.selectPage(fileRequested);
-		});		
+		});
+		this.props.loadPage()
 	},
 	render: function(){
 		return (
-			<PageLoader page={this.props.file} />
+			<div id="page" dangerouslySetInnerHTML={{ __html: this.props.html }} />
 		);
 	}
 });	

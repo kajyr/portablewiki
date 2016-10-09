@@ -1,21 +1,19 @@
 import { connect } from 'react-redux'
 import { editorMode } from '../../actions/ui'
+import { loadCurrentPage } from '../../actions/page'
 
-import PageSelector from './page-selector'
+import PageSelector from './Page'
 
 const mapStateToProps = (state, ownProps) => {
 	console.log('Page', state)
 	return {
-		file: state.page.folder + state.page.file
+		html: state.page.html
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		openFolderSelection: () => {},
-		backHome: () => {},
-		editorMode: () => dispatch(editorMode()),
-		showMode: () => {}
+		loadPage: () => dispatch(loadCurrentPage())
 	}
 }
 

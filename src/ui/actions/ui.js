@@ -2,6 +2,7 @@ import {
 	ACTION_TOGGLE_STATE,
 	ACTION_SELECT_FOLDER,
 	ACTION_SELECTING_FOLDER,
+	STATE_PAGE_MODE,
 	STATE_EDITOR_MODE
 } from '../constants'
 
@@ -11,6 +12,13 @@ export const editorMode = () => {
 	return {
 		type: ACTION_TOGGLE_STATE,
 		state: STATE_EDITOR_MODE
+	}
+}
+
+export const pageMode = () => {
+	return {
+		type: ACTION_TOGGLE_STATE,
+		state: STATE_PAGE_MODE
 	}
 }
 
