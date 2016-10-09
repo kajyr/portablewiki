@@ -4,7 +4,7 @@ const React = require('react');
 
 const dialog = require('electron').remote.dialog; 
 const ipcRenderer = require('electron').ipcRenderer;
-const comm = require('../lib/comm.js');
+const comm = require('../../lib/comm.js');
 
 
 module.exports = React.createClass({

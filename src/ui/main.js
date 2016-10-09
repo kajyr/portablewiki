@@ -8,46 +8,21 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './reducers'
 
 
-import Header from './components/header.jsx';
-import PageSelector from './components/page-selector.jsx';
+
+import App from './components/App';
 
 import comm from './lib/comm';
 
 import './style/style.scss'
 
 
-let middleware = compose(
+const middleware = compose(
 	applyMiddleware(thunk)
 )
 
-let App = React.createClass({
-	componentWillMount: function() {
-		comm.on('editorMode', () => {
-			this.setState({
-				mode: "mode-editor"
-			});
-		})
-
-		comm.on('showMode', () => {
-			this.setState({
-				mode: "mode-show"
-			});
-		})
-	},
-	getInitialState: function(){
-		return {
-			mode: 'mode-show'
-		}
-	},
-	render: function(){
-		return (
-			<div className={this.state.mode}>
-				<Header />
-				<PageSelector status={this.state.mode} />
-			</div>
-			);
-	}
-});
+let store = createStore(rootReducer, middleware)
 
 
-render(<App />, document.getElementById('app'));
+render(<Provider store={store}>
+	<App />
+	 </Provider>, document.getElementById('app'));

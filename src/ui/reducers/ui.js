@@ -1,14 +1,14 @@
+import {
+	ACTION_TOGGLE_STATE,
+	STATE_EDITOR_MODE,
+	STATE_SHOW_MODE
+} from '../constants'
 
 
-const ui = (state = '', action) => {
+const ui = (state = STATE_SHOW_MODE, action) => {
   switch (action.type) {
-    case 'WEIGHTS_LIST_LOADED':
-      return action.list
-    case 'ADDED_WEIGHT':
-      return [
-      	...state,
-      	weight(action.id, action.value, action.date)
-      ]
+    case ACTION_TOGGLE_STATE:
+      return action.state
     default:
       return state
   }
