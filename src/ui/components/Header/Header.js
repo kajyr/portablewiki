@@ -2,7 +2,7 @@
 // https://design.google.com/icons/
 import React, {PropTypes} from 'react'
 
-import BackArrow from './header-back.jsx'
+import BackArrow from './Back'
 
 import {
 	STATE_EDITOR_MODE
@@ -21,10 +21,13 @@ const editorIcon = (mode, pageMode, editorMode) => {
 }
 
 const Header = ({mode, openFolderSelection, pageMode, editorMode, backHome}) => {
+	
+	let back = mode === STATE_EDITOR_MODE ? pageMode : () => null
+
 	return (
 
 		<header>
-			<BackArrow />
+			<BackArrow back={back} />
 		    <a className="header-item" onClick={backHome}>
 		    	<i className="material-icons">home</i> 
 		    </a>
