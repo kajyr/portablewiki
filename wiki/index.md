@@ -7,5 +7,5 @@ please select a [save folder].
 + edit
 
 ## Done
-+ load default page
++ load default page.
 + [link to another page](secondPage.md)

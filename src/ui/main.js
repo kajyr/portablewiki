@@ -8,10 +8,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './reducers'
 import { startListeningToElectron } from './actions/electron'
 
-
 import App from './components/AppContainer';
-
-import comm from './lib/comm';
 
 import './style/style.scss'
 

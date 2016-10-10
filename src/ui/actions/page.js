@@ -1,5 +1,6 @@
 import {
-	ACTION_LOADED_PAGE
+	ACTION_LOADED_PAGE,
+	ACTION_EDITING_PAGE
 } from '../constants'
 
 import Remarkable from 'remarkable'
@@ -21,7 +22,7 @@ const fetchLocal = function (url) {
 	})
 }
 
-const loadedPage = (file, folder, source, html) => {
+export const loadedPage = (file, folder, source, html) => {
 	return {
 		type: ACTION_LOADED_PAGE,
 		file,
@@ -30,6 +31,7 @@ const loadedPage = (file, folder, source, html) => {
 		html
 	}
 }
+
 
 
 export const loadCurrentPage = () => (dispatch, getState) => {
@@ -46,13 +48,4 @@ export const loadCurrentPage = () => (dispatch, getState) => {
 	})
 }
 
-export const savePage = () => (dispatch, getState) => {
-	const state = getState()
-	const page = state.page.folder + state.page.file
-	const source = state.page.source
 
-	ipcRenderer.send('page-save', {
-		page: page,
-		contents: source
-	});
-}

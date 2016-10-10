@@ -4,10 +4,10 @@ import React, {PropTypes} from 'react'
 
 let nil  = f => f
 
-const Editor = ({source, savePage}) => {
+const Editor = ({source, savePage, handleOnEdit}) => {
 	return (
 		<div id="editor">
-				<textarea defaultValue={source} />
+				<textarea defaultValue={source} onChange={handleOnEdit} />
 				<div id="actions">
 					<button onClick={savePage}>Save</button>
 					<button onClick={nil}>Cancel</button>
@@ -19,6 +19,7 @@ const Editor = ({source, savePage}) => {
 
 Editor.propTypes = {
 	source: PropTypes.string.isRequired,
+	handleOnEdit: PropTypes.func.isRequired,
 	savePage: PropTypes.func.isRequired
 }
 
