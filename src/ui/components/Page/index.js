@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { editorMode } from '../../actions/ui'
-import { loadCurrentPage } from '../../actions/page'
+import { loadCurrentPage } from '../../ducks/page'
 
 import PageSelector from './Page'
 

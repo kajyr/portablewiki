@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import { editorMode, pageMode, selectFolder } from '../../actions/ui'
+import { editorMode, pageMode } from '../../actions/ui'
+import { selectFolder } from '../../ducks/page'
 
 import Header from './Header'
 

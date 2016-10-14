@@ -1,7 +1,5 @@
 import {
 	ACTION_TOGGLE_STATE,
-	ACTION_SELECT_FOLDER,
-	ACTION_SELECTING_FOLDER,
 	STATE_PAGE_MODE,
 	STATE_EDITOR_MODE
 } from '../constants'
@@ -22,15 +20,7 @@ export const pageMode = () => {
 	}
 }
 
-export const selectFolder = () => {
 
-	ipcRenderer.send('base-path-select');
-
-	return {
-		type: ACTION_SELECTING_FOLDER
-	}
-
-}
 
 
 

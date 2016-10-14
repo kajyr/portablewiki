@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 
 import ui from './ui'
-import page from './page'
 import editor from '../ducks/editor'
+import page from '../ducks/page'
 
 export default combineReducers({
 	ui,
