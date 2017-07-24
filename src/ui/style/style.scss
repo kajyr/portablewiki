@@ -3,18 +3,31 @@
 https://www.google.com/design/spec/style/color.html#color-color-palette
 
 */
+@import "partials/utils";
 
 html {
 	font-family: Helvetica, sans-serif;
 }
 
 body {
+	@extend %draggable;
 	margin: 0 auto;
+}
+
+button, a {
+	@extend %non-draggable;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 textarea {
 	width: 100%;
-    box-sizing: border-box;
+}
+
+a {
+	cursor: pointer;
 }
 
 @import "partials/header";
@@ -22,6 +35,3 @@ textarea {
 @import "partials/editor";
 
 
-a {
-	cursor: pointer;
-}

@@ -28,7 +28,7 @@
     "material-design-icons": "^3.0.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
+    "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "remarkable": "^1.7.1"
@@ -39,12 +39,12 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-react-hmre": "^1.1.1",
-    "css-loader": "^0.25.0",
+    "css-loader": "^0.26.1",
     "electron-rebuild": "^1.2.1",
-    "node-sass": "^3.10.1",
+    "node-sass": "^4.5.0",
     "nodeunit": "^0.10.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2"
+    "webpack": "^2.2.1"
   }
 }

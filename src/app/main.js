@@ -25,7 +25,7 @@ const userdata = storage(dbPath);
 let mainWindow;
 
 function createWindow () {
-  userdata.get('WindowDimensions', {width: 800, height: 600})
+  userdata.get('WindowDimensions', {width: 800, height: 600, titleBarStyle: 'hidden'})
   .then(function(windim) {
     // Create the browser window.
     mainWindow = new BrowserWindow(windim);

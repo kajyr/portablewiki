@@ -28,9 +28,8 @@ module.exports = [{
 	devtool: "source-map",
 	module: {
 		loaders: [
-		{ test: /\.jsx$/, loader: 'babel', exclude: /node_modules/},
-		{ test: /\.js$/, loader: 'babel', exclude: /node_modules/},
-		{ test: /\.scss$/, loaders: ["style", "css", "sass"] }
+		{ test: /\.js/, loader: 'babel-loader', exclude: /node_modules/},
+		{ test: /\.scss$/, loaders: ["style-loader", "css-loader", "sass-loader"] }
 		]
 	},
 	plugins: [
@@ -46,7 +45,7 @@ module.exports = [{
 	},
 	module: {
 		loaders: [
-			{ test: /\.js$/, loader: 'babel', exclude: /node_modules/},
+			{ test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
 		]
 	},
 	target: 'node',

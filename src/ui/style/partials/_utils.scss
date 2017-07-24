@@ -1,0 +1,12 @@
+%draggable {
+	-webkit-app-region: drag;
+}
+
+%non-draggable {
+	-webkit-app-region: no-drag;
+}
+
+
+%non-selectable {
+	-webkit-user-select: none;
+}

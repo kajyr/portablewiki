@@ -1,11 +1,11 @@
 header {
+	@extend %non-selectable;
 	display: flex;
 	align-items: center;
 	background: #2196F3;
 	padding: 15px;
-    box-sizing: border-box;
-    color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+	color: white;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 }
 
 header h1 {
